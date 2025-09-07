@@ -9,10 +9,10 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* Custom styles for vibrant, enchanting dark purple theme */
+        /* Custom styles for vibrant, lively dark purple theme with pop-up buttons */
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(to bottom, #2e1065, #4c1d95);
+            background: linear-gradient(to bottom, #4c1d95, #a855f7);
         }
         .checkbox-custom {
             width: 1.5rem;
@@ -21,11 +21,11 @@
         }
         .job-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.3);
+            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.5);
         }
         .job-card:hover:not(.disabled) {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(192, 132, 252, 0.5);
+            box-shadow: 0 8px 25px rgba(192, 132, 252, 0.7);
         }
         .disabled {
             opacity: 0.5;
@@ -35,34 +35,54 @@
             animation: fadeIn 1s ease-in-out;
         }
         @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
+            0% { opacity: 0; transform: translateY(15px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-        .gradient-text {
-            background: linear-gradient(to right, #c084fc, #f0abfc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .subtle-text {
+            color: #f0abfc;
         }
-        .glow-button {
-            box-shadow: 0 0 15px rgba(192, 132, 252, 0.7);
+        .pop-up-button {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.6);
+        }
+        .pop-up-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(192, 132, 252, 0.8);
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col text-white">
     <!-- Header -->
     <header class="bg-purple-900 text-white py-12 text-center">
-        <img src="luxoft-logo.png" alt="Luxoft Logo" class="h-16 mx-auto mb-4">
-        <h1 class="text-4xl md:text-5xl font-bold gradient-text">Luxoft Careers</h1>
-        <p class="mt-3 text-lg md:text-xl">Join our enchanting work-from-home team! Select exactly three roles to earn $30/hour.</p>
-        <p class="mt-2 text-sm">Each position pays $10/hour. Apply via SMS to 480-559-8731.</p>
+        <img src="luxoft-logo.png" alt="Luxoft Logo" class="h-4 mx-auto mb-4">
+        <h1 class="text-4xl md:text-5xl font-bold subtle-text">Work From Home Jobs Available</h1>
+        <p class="mt-3 text-lg md:text-xl">Join our team at Luxoft and work from the comfort of your home.</p>
+        <p class="mt-2 text-base">We are hiring for remote positions with excellent pay and benefits.</p>
     </header>
 
     <!-- Main Content -->
     <main class="max-w-4xl mx-auto p-6 flex-grow">
-        <section class="bg-purple-800 rounded-xl shadow-2xl p-8 fade-in">
-            <h2 class="text-3xl font-semibold mb-6 text-white">Work-from-Home Opportunities</h2>
-            <p class="text-purple-200 mb-6">Choose exactly three positions to apply. Each role pays $10/hour, totaling $30/hour, and is fully remote!</p>
+        <!-- Benefits Section -->
+        <section class="bg-purple-800 rounded-xl shadow-lg p-8 fade-in mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-white">Benefits</h2>
+            <ul class="list-disc list-inside text-purple-200 space-y-2">
+                <li>Competitive pay</li>
+                <li>Flexible working hours</li>
+                <li>Health, dental, and vision insurance</li>
+            </ul>
+        </section>
+
+        <!-- Application Form -->
+        <section class="bg-purple-800 rounded-xl shadow-lg p-8 fade-in">
+            <h2 class="text-3xl font-semibold mb-6 text-white">Ready to Apply?</h2>
+            <p class="text-purple-200 mb-6">Enter your name and choose exactly three positions. Each role pays $10/hour, totaling $30/hour, and is fully remote!</p>
             <form id="jobForm" class="space-y-6">
+                <!-- Name Input -->
+                <div>
+                    <label for="applicantName" class="text-lg font-medium text-white">Your Name</label>
+                    <input type="text" id="applicantName" required class="mt-2 w-full bg-purple-700 text-white border border-purple-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter your full name">
+                </div>
+
                 <!-- Job Checkboxes -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="job-card bg-purple-700 p-4 rounded-lg">
@@ -70,14 +90,14 @@
                             <input type="checkbox" id="payroll" value="Payroll" class="checkbox-custom">
                             <label for="payroll" class="ml-3 text-lg font-medium text-white">Payroll ($10/hour)</label>
                         </div>
-                        <p class="text-sm text-purple-200 mt-2">Manage payroll systems from the comfort of home.</p>
+                        <p class="text-sm text-purple-200 mt-2">Manage payroll systems from home.</p>
                     </div>
                     <div class="job-card bg-purple-700 p-4 rounded-lg">
                         <div class="flex items-center">
                             <input type="checkbox" id="recruiting" value="Recruiting" class="checkbox-custom">
                             <label for="recruiting" class="ml-3 text-lg font-medium text-white">Recruiting ($10/hour)</label>
                         </div>
-                        <p class="text-sm text-purple-200 mt-2">Source top talent remotely with ease.</p>
+                        <p class="text-sm text-purple-200 mt-2">Source top talent remotely.</p>
                     </div>
                     <div class="job-card bg-purple-700 p-4 rounded-lg">
                         <div class="flex items-center">
@@ -102,10 +122,10 @@
                     </div>
                 </div>
 
-                <!-- SMS Consent Checkbox -->
+                <!-- SMS/WhatsApp Consent Checkbox -->
                 <div class="flex items-center mt-6">
-                    <input type="checkbox" id="smsConsent" class="checkbox-custom" required>
-                    <label for="smsConsent" class="ml-3 text-sm text-purple-200">I consent to receive SMS messages regarding my application.</label>
+                    <input type="checkbox" id="messagingConsent" class="checkbox-custom" required>
+                    <label for="messagingConsent" class="ml-3 text-sm text-purple-200">I consent to receive SMS or WhatsApp messages regarding my application.</label>
                 </div>
 
                 <!-- Total Pay Display -->
@@ -116,10 +136,15 @@
                 <!-- Error Message -->
                 <p id="errorMessage" class="text-pink-400 text-sm hidden">Please select exactly three positions.</p>
 
-                <!-- Submit Button -->
-                <button type="submit" class="mt-6 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-3 rounded-lg hover:from-purple-700 hover:to-pink-600 transition flex items-center justify-center glow-button">
-                    <i class="fas fa-paper-plane mr-2"></i> Apply via SMS
-                </button>
+                <!-- Messaging Options -->
+                <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+                    <button type="submit" name="method" value="sms" class="bg-purple-600 text-white px-8 py-3 rounded-lg pop-up-button flex items-center justify-center">
+                        <i class="fas fa-sms mr-2"></i> Apply via SMS
+                    </button>
+                    <button type="submit" name="method" value="whatsapp" class="bg-purple-600 text-white px-8 py-3 rounded-lg pop-up-button flex items-center justify-center">
+                        <i class="fab fa-whatsapp mr-2"></i> Apply via WhatsApp
+                    </button>
+                </div>
             </form>
         </section>
     </main>
@@ -127,7 +152,7 @@
     <!-- Footer -->
     <footer class="bg-purple-900 text-white text-center py-6">
         <p>&copy; 2025 Luxoft. All rights reserved.</p>
-        <p class="text-sm mt-2">By applying, you agree to our <a href="#" class="underline hover:text-pink-300">Terms</a> and <a href="#" class="underline hover:text-pink-300">Privacy Policy</a></p>
+        <p class="text-sm mt-2">By applying, you agree to our <a href="#" class="underline hover:text-pink-400">Terms</a> and <a href="#" class="underline hover:text-pink-400">Privacy Policy</a></p>
     </footer>
 
     <!-- JavaScript for Form Handling -->
@@ -135,12 +160,13 @@
         const form = document.getElementById('jobForm');
         const totalPayElement = document.getElementById('totalPay');
         const errorMessage = document.getElementById('errorMessage');
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#smsConsent)');
+        const applicantNameInput = document.getElementById('applicantName');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#messagingConsent)');
         const jobCards = document.querySelectorAll('.job-card');
 
         // Update total pay and checkbox state
         const updateFormState = () => {
-            const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked:not(#smsConsent)').length;
+            const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked:not(#messagingConsent)').length;
             totalPayElement.textContent = `Total Hourly Pay: $${checkedCount * 10}`;
 
             // Disable unchecked boxes if 3 are selected
@@ -164,18 +190,27 @@
         // Handle form submission
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked:not(#smsConsent)');
+            const checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked:not(#messagingConsent)');
             if (checkedCheckboxes.length !== 3) {
                 errorMessage.classList.remove('hidden');
                 return;
             }
             errorMessage.classList.add('hidden');
 
-            // Get selected jobs
+            // Get name and selected jobs
+            const applicantName = applicantNameInput.value.trim();
             const selectedJobs = Array.from(checkedCheckboxes).map(cb => cb.value).join(', ');
-            const smsBody = `Applying for ${encodeURIComponent(selectedJobs)}`;
-            const smsLink = `sms:+14805598731?body=${smsBody}`;
-            window.location.href = smsLink;
+            const messageBody = `${encodeURIComponent(applicantName)} applying for ${encodeURIComponent(selectedJobs)}`;
+
+            // Determine messaging method
+            const method = e.submitter.value;
+            let link;
+            if (method === 'whatsapp') {
+                link = `https://wa.me/+19713476514?text=${messageBody}`;
+            } else {
+                link = `sms:+14805598731?body=${messageBody}`;
+            }
+            window.location.href = link;
         });
 
         // Trigger initial state update
