@@ -9,7 +9,7 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* Custom styles for darker, vibrant purple theme with pop-up buttons */
+        /* Custom styles for dark purple theme with slideshow */
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(to bottom, #2e1065, #581c87);
@@ -49,33 +49,90 @@
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(192, 132, 252, 0.8);
         }
+        /* Slideshow styles with full-width phase-in */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 200px; /* Restored to former smaller size */
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .slide-text {
+            color: #f0abfc;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+        }
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 4px;
+            background-color: #c084fc;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .dot.active {
+            background-color: #f0abfc;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col text-white">
     <!-- Header -->
     <header class="bg-purple-950 text-white py-12 text-center">
         <img src="luxoft-logo.png" alt="Luxoft Logo" class="h-24 mx-auto mb-4">
-        <h1 class="text-4xl md:text-5xl font-bold subtle-text">Work From Home Jobs Available</h1>
+        <h1 class="text-4xl md:text-5xl font-bold subtle-text">Find open roles</h1>
         <p class="mt-3 text-lg md:text-xl">Join our team at Luxoft and work from the comfort of your home.</p>
         <p class="mt-2 text-base">We are hiring for remote positions with excellent pay and benefits.</p>
     </header>
 
     <!-- Main Content -->
     <main class="max-w-4xl mx-auto p-6 flex-grow">
-        <!-- Benefits Section -->
+        <!-- Benefits Slideshow -->
         <section class="bg-purple-800 rounded-xl shadow-lg p-8 fade-in mb-8">
             <h2 class="text-2xl font-semibold mb-4 text-white">Benefits</h2>
-            <ul class="list-disc list-inside text-purple-200 space-y-2">
-                <li>Competitive pay</li>
-                <li>Flexible working hours</li>
-                <li>Health, dental, and vision insurance</li>
-            </ul>
+            <div class="slideshow-container">
+                <div class="slide">
+                    <p class="slide-text">Competitive pay for all roles</p>
+                </div>
+                <div class="slide">
+                    <p class="slide-text">Flexible working hours to suit your schedule</p>
+                </div>
+                <div class="slide">
+                    <p class="slide-text">Health, dental, and vision insurance provided</p>
+                </div>
+                <!-- Navigation dots -->
+                <div class="text-center mt-4">
+                    <span class="dot" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
+            </div>
         </section>
 
         <!-- Application Form -->
         <section class="bg-purple-800 rounded-xl shadow-lg p-8 fade-in">
             <h2 class="text-3xl font-semibold mb-6 text-white">Ready to Apply?</h2>
-            <p class="text-purple-200 mb-6">Enter your name and choose exactly three positions. Each role pays $10/hour, totaling $30/hour, and is fully remote!</p>
+            <p class="text-purple-200 mb-6">Enter your name and choose exactly three positions. Each role pays $10/hour, totaling $30/hour,Training included and is fully remote!</p>
             <form id="jobForm" class="space-y-6">
                 <!-- Name Input -->
                 <div>
@@ -138,10 +195,10 @@
 
                 <!-- Messaging Options -->
                 <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
-                    <button type="submit" name="method" value="sms" class="bg-purple-600 text-white px-8 py-3 rounded-lg pop-up-button flex items-center justify-center">
+                    <button type="submit" name="method" value="sms" class="bg-blue-600 text-white px-8 py-3 rounded-lg pop-up-button flex items-center justify-center hover:bg-blue-700">
                         <i class="fas fa-sms mr-2"></i> Apply via SMS
                     </button>
-                    <button type="submit" name="method" value="whatsapp" class="bg-purple-600 text-white px-8 py-3 rounded-lg pop-up-button flex items-center justify-center">
+                    <button type="submit" name="method" value="whatsapp" class="bg-green-600 text-white px-8 py-3 rounded-lg pop-up-button flex items-center justify-center hover:bg-green-700">
                         <i class="fab fa-whatsapp mr-2"></i> Apply via WhatsApp
                     </button>
                 </div>
@@ -152,10 +209,10 @@
     <!-- Footer -->
     <footer class="bg-purple-950 text-white text-center py-6">
         <p>&copy; 2025 Luxoft. All rights reserved.</p>
-        <p class="text-sm mt-2">By applying, you agree to our <a href="#" class="underline hover:text-pink-400">Terms</a> and <a href="#" class="underline hover:text-pink-400">Privacy Policy</a>.</p>
+        <p class="text-sm mt-2">By applying, you agree to our <a href="#" class="underline hover:text-pink-400">Terms</a> and <a href="#" class="underline hover:text-pink-400">Privacy Policy</a></p>
     </footer>
 
-    <!-- JavaScript for Form Handling -->
+    <!-- JavaScript for Form Handling and Slideshow -->
     <script>
         const form = document.getElementById('jobForm');
         const totalPayElement = document.getElementById('totalPay');
@@ -213,7 +270,37 @@
             window.location.href = link;
         });
 
-        // Trigger initial state update
+        // Slideshow JavaScript
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlides(n) {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                dots[index].classList.remove('active');
+            });
+            slideIndex = (n >= slides.length) ? 0 : (n < 0) ? slides.length - 1 : n;
+            slides[slideIndex].classList.add('active');
+            dots[slideIndex].classList.add('active');
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function autoSlides() {
+            showSlides(slideIndex + 1);
+            setTimeout(autoSlides, 5000); // Change slide every 5 seconds
+        }
+
+        // Initialize slideshow
+        if (slides.length > 0) {
+            showSlides(slideIndex);
+            autoSlides();
+        }
+
+        // Trigger initial form state update
         updateFormState();
     </script>
 </body>
