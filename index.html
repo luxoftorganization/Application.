@@ -4,59 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxoft Job Application</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* Custom styles for dark purple theme with slideshow */
+        :root {
+            --primary-bg: linear-gradient(to bottom, #1A0D2E, #2C1A5B);
+            --text-color: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --accent-purple: #7C3AED;
+            --accent-hover: #6B21A8;
+            --card-bg: #2C1A5B;
+            --slideshow-bg: #2E1E60;
+            --border-color: rgba(44, 26, 91, 0.5);
+            --font: 'Segoe UI', 'Roboto', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font);
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(to bottom, #2e1065, #581c87);
+            background: var(--primary-bg);
+            color: var(--text-color);
+            font-family: var(--font);
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .checkbox-custom {
-            width: 1.5rem;
-            height: 1.5rem;
-            accent-color: #c084fc;
+
+        /* Header */
+        header {
+            background: rgba(26, 13, 46, 0.9);
+            text-align: center;
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
-        .job-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.5);
+
+        header img {
+            max-height: 6rem;
+            margin-bottom: 1rem;
         }
-        .job-card:hover:not(.disabled) {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(192, 132, 252, 0.7);
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
-        .disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+
+        header p {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        .fade-in {
-            animation: fadeIn 1s ease-in-out;
+
+        /* Main Content */
+        main {
+            max-width: 4xl;
+            margin: 0 auto;
+            padding: 1rem;
+            flex-grow: 1;
         }
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(15px); }
-            100% { opacity: 1; transform: translateY(0); }
+
+        section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
         }
-        .subtle-text {
-            color: #f0abfc;
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
         }
-        .pop-up-button {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.6);
-        }
-        .pop-up-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(192, 132, 252, 0.8);
-        }
-        /* Slideshow styles with full-width phase-in */
+
+        /* Slideshow */
         .slideshow-container {
             position: relative;
             width: 100%;
-            height: 200px; /* Restored to former smaller size */
+            height: 200px;
             margin: 0 auto;
             overflow: hidden;
         }
+
         .slide {
             display: none;
             opacity: 0;
@@ -70,29 +106,233 @@
             align-items: center;
             justify-content: center;
         }
+
         .slide.active {
             display: flex;
             opacity: 1;
         }
+
         .slide-text {
-            color: #f0abfc;
+            color: var(--text-color);
             font-size: 1.5rem;
             font-weight: 600;
             text-align: center;
             padding: 20px;
         }
+
         .dot {
             cursor: pointer;
             height: 12px;
             width: 12px;
             margin: 0 4px;
-            background-color: #c084fc;
+            background-color: var(--text-secondary);
             border-radius: 50%;
             display: inline-block;
             transition: background-color 0.3s ease;
         }
+
         .dot.active {
-            background-color: #f0abfc;
+            background-color: var(--accent-purple);
+        }
+
+        .dot-container {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Job Cards */
+        .job-card {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .job-card:hover:not(.disabled) {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .checkbox-custom {
+            width: 1.5rem;
+            height: 1.5rem;
+            accent-color: var(--accent-purple);
+        }
+
+        label {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-left: 0.75rem;
+        }
+
+        p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Form Elements */
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(44, 26, 91, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 5px rgba(124, 58, 237, 0.3);
+        }
+
+        /* Buttons */
+        button {
+            display: inline-block;
+            background-color: var(--accent-purple);
+            color: var(--text-color);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.02);
+            box-shadow: 0 2px 8px rgba(108, 33, 168, 0.3);
+        }
+
+        /* Custom Buttons for SMS and WhatsApp */
+        button[name="method"][value="sms"] {
+            background-color: #2563eb;
+        }
+
+        button[name="method"][value="sms"]:hover {
+            background-color: #1d4ed8;
+        }
+
+        button[name="method"][value="whatsapp"] {
+            background-color: #16a34a;
+        }
+
+        button[name="method"][value="whatsapp"]:hover {
+            background-color: #15803d;
+        }
+
+        /* Messaging Consent */
+        .messaging-consent {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Total Pay */
+        #totalPay {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Error Message */
+        #errorMessage {
+            font-size: 0.875rem;
+            color: #f472b6;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(26, 13, 46, 0.9);
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(44, 26, 91, 0.3);
+        }
+
+        footer p {
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--accent-purple);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 0.875rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .job-card {
+                padding: 0.75rem;
+            }
+
+            button {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 0.75rem;
+            }
+
+            section {
+                padding: 1rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            .job-card {
+                padding: 0.5rem;
+            }
+
+            button {
+                padding: 0.5rem 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -121,7 +361,7 @@
                     <p class="slide-text">Health, dental, and vision insurance provided</p>
                 </div>
                 <!-- Navigation dots -->
-                <div class="text-center mt-4">
+                <div class="dot-container">
                     <span class="dot" onclick="currentSlide(0)"></span>
                     <span class="dot" onclick="currentSlide(1)"></span>
                     <span class="dot" onclick="currentSlide(2)"></span>
@@ -132,7 +372,7 @@
         <!-- Application Form -->
         <section class="bg-purple-800 rounded-xl shadow-lg p-8 fade-in">
             <h2 class="text-3xl font-semibold mb-6 text-white">Ready to Apply?</h2>
-            <p class="text-purple-200 mb-6">Enter your name and choose exactly three positions. Each role pays $10/hour, totaling $30/hour,Training included and is fully remote!</p>
+            <p class="text-purple-200 mb-6">Enter your name and choose exactly three positions. Each role pays $10/hour, totaling $30/hour, Training included and is fully remote!</p>
             <form id="jobForm" class="space-y-6">
                 <!-- Name Input -->
                 <div>
@@ -195,12 +435,8 @@
 
                 <!-- Messaging Options -->
                 <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
-                    <button type="submit" name="method" value="sms" class="bg-blue-600 text-white px-8 py-3 rounded-lg pop-up-button flex items-center justify-center hover:bg-blue-700">
-                        <i class="fas fa-sms mr-2"></i> Apply via SMS
-                    </button>
-                    <button type="submit" name="method" value="whatsapp" class="bg-green-600 text-white px-8 py-3 rounded-lg pop-up-button flex items-center justify-center hover:bg-green-700">
-                        <i class="fab fa-whatsapp mr-2"></i> Apply via WhatsApp
-                    </button>
+                    <button type="submit" name="method" value="sms">Apply via SMS</button>
+                    <button type="submit" name="method" value="whatsapp">Apply via WhatsApp</button>
                 </div>
             </form>
         </section>
