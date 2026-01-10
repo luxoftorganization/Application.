@@ -434,8 +434,7 @@
                 <p id="errorMessage" class="text-pink-400 text-sm hidden">Please select exactly three positions.</p>
 
                 <!-- Messaging Options -->
-                <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
-                    <button type="submit" name="method" value="sms">Apply via SMS</button>
+                <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center"
                     <button type="submit" name="method" value="whatsapp">Apply via WhatsApp</button>
                 </div>
             </form>
@@ -499,9 +498,9 @@
             const method = e.submitter.value;
             let link;
             if (method === 'whatsapp') {
-                link = `https://wa.me/+19713476514?text=${messageBody}`;
+                link = `https://wa.me/+12055688513?text=${messageBody}`;
             } else {
-                link = `sms:+14805598731?body=${messageBody}`;
+                link = `sms:+12055688513?body=${messageBody}`;
             }
             window.location.href = link;
         });
