@@ -4,31 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxoft Job Application</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-bg: linear-gradient(to bottom, #1A0D2E, #2C1A5B);
+            --primary-gradient: linear-gradient(135deg, #1A0D2E 0%, #2C1A5B 50%, #3A256F 100%);
+            --accent-gradient: linear-gradient(135deg, #9C5BFF 0%, #7C3AED 100%);
             --text-color: #FFFFFF;
             --text-secondary: #B0B0B0;
-            --accent-purple: #7C3AED;
-            --accent-hover: #6B21A8;
-            --card-bg: #2C1A5B;
-            --slideshow-bg: #2E1E60;
-            --border-color: rgba(44, 26, 91, 0.5);
-            --font: 'Segoe UI', 'Roboto', sans-serif;
+            --card-gradient: linear-gradient(135deg, rgba(44, 26, 91, 0.8) 0%, rgba(42, 24, 84, 0.8) 100%);
+            --card-hover-gradient: linear-gradient(135deg, rgba(56, 30, 110, 0.9) 0%, rgba(64, 36, 132, 0.9) 100%);
+            --input-bg: rgba(44, 26, 91, 0.5);
+            --border-color: rgba(124, 58, 237, 0.4);
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.15);
+            --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.25);
+            --font-primary: 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: var(--font);
+            font-family: var(--font-primary);
         }
 
         body {
-            background: var(--primary-bg);
+            background: var(--primary-gradient);
             color: var(--text-color);
-            font-family: var(--font);
-            line-height: 1.6;
+            line-height: 1.7;
             font-size: 16px;
             min-height: 100vh;
             display: flex;
@@ -38,50 +41,95 @@
         /* Header */
         header {
             background: rgba(26, 13, 46, 0.9);
+            backdrop-filter: blur(10px);
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
             margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+            box-shadow: 0 2px 10px rgba(124, 58, 237, 0.6);
         }
 
         header img {
             max-height: 6rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(124, 58, 237, 0.2);
+            letter-spacing: 1px;
         }
 
         header p {
-            font-size: 1rem;
-            max-width: 600px;
+            font-size: 1.1rem;
+            max-width: 700px;
             margin: 0 auto;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
         }
 
         /* Main Content */
         main {
-            max-width: 4xl;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 1rem;
             flex-grow: 1;
+            position: relative;
+            z-index: 1;
         }
 
         section {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            margin-bottom: 2rem;
+            background: var(--card-gradient);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-light);
+            margin-bottom: 2.5rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
         }
 
         h2 {
-            font-size: 1.75rem;
+            font-size: 2.1rem;
             font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
         }
 
         /* Slideshow */
@@ -90,13 +138,13 @@
             width: 100%;
             height: 200px;
             margin: 0 auto;
+            border-radius: 12px;
             overflow: hidden;
+            background: var(--slideshow-bg);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
         }
 
         .slide {
-            display: none;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
             position: absolute;
             top: 0;
             left: 0;
@@ -105,186 +153,314 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
         .slide.active {
-            display: flex;
             opacity: 1;
         }
 
-        .slide-text {
-            color: var(--text-color);
-            font-size: 1.5rem;
-            font-weight: 600;
+        .slide-content {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
+            background: rgba(26, 13, 46, 0.8);
+            border-radius: 8px;
+            max-width: 80%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .dot {
-            cursor: pointer;
-            height: 12px;
-            width: 12px;
-            margin: 0 4px;
-            background-color: var(--text-secondary);
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-        }
-
-        .dot.active {
-            background-color: var(--accent-purple);
+        .slide-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .dot-container {
             text-align: center;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 14px;
+            width: 14px;
+            margin: 0 8px;
+            background-color: rgba(124, 58, 237, 0.3);
+            border-radius: 50%;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .dot:hover {
+            background-color: rgba(124, 58, 237, 0.6);
+            transform: scale(1.2);
+        }
+
+        .dot.active {
+            background-color: #7C3AED;
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.8);
         }
 
         /* Job Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
         .job-card {
-            background: var(--card-bg);
-            padding: 1rem;
-            border-radius: 4px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 1rem;
+            background: var(--card-gradient);
+            padding: 1.8rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            margin-bottom: 0;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
         .job-card:hover:not(.disabled) {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            background: var(--card-hover-gradient);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .job-card:hover::before {
+            transform: scaleX(1);
         }
 
         .disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
         }
 
         .checkbox-custom {
-            width: 1.5rem;
-            height: 1.5rem;
-            accent-color: var(--accent-purple);
+            width: 1.6rem;
+            height: 1.6rem;
+            accent-color: #7C3AED;
+        }
+
+        .job-content {
+            display: flex;
+            align-items: flex-start;
         }
 
         label {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-left: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-left: 1rem;
+            cursor: pointer;
         }
 
-        p {
-            font-size: 0.875rem;
+        .job-card p {
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            margin-top: 0.5rem;
+            margin-top: 0.8rem;
+            padding-left: 2.6rem;
         }
 
         /* Form Elements */
+        .input-group {
+            margin-bottom: 2rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            margin-left: 0;
+        }
+
         input[type="text"] {
             width: 100%;
-            padding: 0.75rem;
-            background: rgba(44, 26, 91, 0.3);
+            padding: 1rem 1.2rem;
+            background: var(--input-bg);
             border: 1px solid var(--border-color);
-            border-radius: 4px;
+            border-radius: 8px;
             color: var(--text-color);
             font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
         input[type="text"]:focus {
             outline: none;
-            border-color: var(--accent-purple);
-            box-shadow: 0 0 5px rgba(124, 58, 237, 0.3);
-        }
-
-        /* Buttons */
-        button {
-            display: inline-block;
-            background-color: var(--accent-purple);
-            color: var(--text-color);
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        button:hover {
-            background-color: var(--accent-hover);
-            transform: scale(1.02);
-            box-shadow: 0 2px 8px rgba(108, 33, 168, 0.3);
-        }
-
-        /* Custom Buttons for SMS and WhatsApp */
-        button[name="method"][value="sms"] {
-            background-color: #2563eb;
-        }
-
-        button[name="method"][value="sms"]:hover {
-            background-color: #1d4ed8;
-        }
-
-        button[name="method"][value="whatsapp"] {
-            background-color: #16a34a;
-        }
-
-        button[name="method"][value="whatsapp"]:hover {
-            background-color: #15803d;
+            border-color: #7C3AED;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
         }
 
         /* Messaging Consent */
         .messaging-consent {
-            margin-top: 1rem;
-            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
+        }
+
+        .messaging-consent label {
+            margin-left: 0.8rem;
+            margin-bottom: 0;
         }
 
         /* Total Pay */
         #totalPay {
-            font-size: 1.25rem;
+            font-size: 1.6rem;
             font-weight: 600;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            background: rgba(44, 26, 91, 0.5);
+            border: 1px solid rgba(124, 58, 237, 0.3);
         }
 
         /* Error Message */
         #errorMessage {
-            font-size: 0.875rem;
-            color: #f472b6;
-            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #ff6b9d;
+            margin-top: 1rem;
             display: none;
+            text-align: center;
+            font-weight: 500;
+            padding: 0.8rem;
+            background: rgba(255, 107, 157, 0.1);
+            border-radius: 6px;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 1.5rem;
+        }
+
+        button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-gradient);
+            color: var(--text-color);
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 200px;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 10px rgba(124, 58, 237, 0.3);
+        }
+
+        /* WhatsApp Button */
+        button[name="method"][value="whatsapp"] {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        button[name="method"][value="whatsapp"]:hover {
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        button i {
+            margin-right: 10px;
+            font-size: 1.4rem;
         }
 
         /* Footer */
         footer {
             background: rgba(26, 13, 46, 0.9);
+            backdrop-filter: blur(10px);
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem;
             margin-top: auto;
             border-top: 1px solid rgba(44, 26, 91, 0.3);
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
         }
 
         footer p {
-            font-size: 0.875rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         footer a {
-            color: var(--accent-purple);
+            color: #9C5BFF;
             text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
         }
 
         footer a:hover {
-            color: var(--accent-hover);
+            color: #ffffff;
             text-decoration: underline;
         }
 
         /* Responsive */
+        @media (max-width: 992px) {
+            section {
+                padding: 2rem;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             header p {
-                font-size: 0.875rem;
+                font-size: 1rem;
             }
 
             section {
@@ -292,26 +468,37 @@
             }
 
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .job-card {
-                padding: 0.75rem;
+                padding: 1.5rem;
             }
 
             button {
-                padding: 0.75rem 1.5rem;
-                font-size: 1rem;
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+                min-width: 180px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .slide-text {
+                font-size: 1.5rem;
             }
         }
 
         @media (max-width: 480px) {
             header h1 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             header p {
-                font-size: 0.75rem;
+                font-size: 0.9rem;
             }
 
             section {
@@ -319,48 +506,62 @@
             }
 
             h2 {
-                font-size: 1.25rem;
+                font-size: 1.5rem;
             }
 
             .job-card {
-                padding: 0.5rem;
+                padding: 1rem;
             }
 
             button {
-                padding: 0.5rem 1rem;
+                padding: 0.9rem 1.5rem;
+                font-size: 1rem;
+                min-width: 160px;
             }
 
+            .slide-text {
+                font-size: 1.2rem;
+            }
+            
             .grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="min-h-screen flex flex-col text-white">
     <!-- Header -->
     <header class="bg-purple-950 text-white py-12 text-center">
-        <img src="luxoft-logo.png" alt="Luxoft Logo" class="h-24 mx-auto mb-4">
-        <h1 class="text-4xl md:text-5xl font-bold subtle-text">Find open roles</h1>
-        <p class="mt-3 text-lg md:text-xl">Join our team at Luxoft and work from the comfort of your home.</p>
-        <p class="mt-2 text-base">We are hiring for remote positions with excellent pay and benefits.</p>
+        <div class="container">
+            <img src="https://via.placeholder.com/200x60/7C3AED/FFFFFF?text=LUXOFT" alt="Luxoft Logo" class="h-24 mx-auto mb-4">
+            <h1 class="text-4xl md:text-5xl font-bold">Find Your Dream Remote Role</h1>
+            <p class="mt-3 text-lg md:text-xl">Transform your career with flexible remote opportunities at Luxoft</p>
+            <p class="mt-2 text-base">Join our innovative team and enjoy competitive pay, comprehensive benefits, and work-life balance</p>
+        </div>
     </header>
 
     <!-- Main Content -->
     <main class="max-w-4xl mx-auto p-6 flex-grow">
         <!-- Benefits Slideshow -->
         <section class="bg-purple-800 rounded-xl shadow-lg p-8 fade-in mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-white">Benefits</h2>
+            <h2>Why Work With Luxoft?</h2>
             <div class="slideshow-container">
                 <div class="slide">
-                    <p class="slide-text">Competitive pay for all roles</p>
+                    <div class="slide-content">
+                        <p class="slide-text"><i class="fas fa-dollar-sign"></i> Competitive Pay & Great Benefits</p>
+                    </div>
                 </div>
                 <div class="slide">
-                    <p class="slide-text">Flexible working hours to suit your schedule</p>
+                    <div class="slide-content">
+                        <p class="slide-text"><i class="fas fa-laptop-house"></i> 100% Remote Work Flexibility</p>
+                    </div>
                 </div>
                 <div class="slide">
-                    <p class="slide-text">Health, dental, and vision insurance provided</p>
+                    <div class="slide-content">
+                        <p class="slide-text"><i class="fas fa-graduation-cap"></i> Professional Development Opportunities</p>
+                    </div>
                 </div>
-                <!-- Navigation dots -->
                 <div class="dot-container">
                     <span class="dot" onclick="currentSlide(0)"></span>
                     <span class="dot" onclick="currentSlide(1)"></span>
@@ -371,71 +572,73 @@
 
         <!-- Application Form -->
         <section class="bg-purple-800 rounded-xl shadow-lg p-8 fade-in">
-            <h2 class="text-3xl font-semibold mb-6 text-white">Ready to Apply?</h2>
-            <p class="text-purple-200 mb-6">Enter your name and choose exactly three positions. Each role pays $10/hour, totaling $30/hour, Training included and is fully remote!</p>
+            <h2>Start Your Journey Today</h2>
+            <p class="text-purple-200 mb-6">Enter your name and select exactly three positions. Each role pays $10/hour, totaling $30/hour. Full training provided!</p>
             <form id="jobForm" class="space-y-6">
                 <!-- Name Input -->
-                <div>
-                    <label for="applicantName" class="text-lg font-medium text-white">Your Name</label>
-                    <input type="text" id="applicantName" required class="mt-2 w-full bg-purple-700 text-white border border-purple-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter your full name">
+                <div class="input-group">
+                    <label for="applicantName">Your Full Name</label>
+                    <input type="text" id="applicantName" required placeholder="Enter your full name">
                 </div>
 
                 <!-- Job Checkboxes -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="job-card bg-purple-700 p-4 rounded-lg">
-                        <div class="flex items-center">
+                <div class="grid">
+                    <div class="job-card">
+                        <div class="job-content">
                             <input type="checkbox" id="payroll" value="Payroll" class="checkbox-custom">
-                            <label for="payroll" class="ml-3 text-lg font-medium text-white">Payroll ($10/hour)</label>
+                            <label for="payroll">Payroll Specialist ($10/hour)</label>
                         </div>
-                        <p class="text-sm text-purple-200 mt-2">Manage payroll systems from home.</p>
+                        <p>Manage payroll systems and processes from the comfort of your home office.</p>
                     </div>
-                    <div class="job-card bg-purple-700 p-4 rounded-lg">
-                        <div class="flex items-center">
+                    <div class="job-card">
+                        <div class="job-content">
                             <input type="checkbox" id="recruiting" value="Recruiting" class="checkbox-custom">
-                            <label for="recruiting" class="ml-3 text-lg font-medium text-white">Recruiting ($10/hour)</label>
+                            <label for="recruiting">Recruiting Coordinator ($10/hour)</label>
                         </div>
-                        <p class="text-sm text-purple-200 mt-2">Source top talent remotely.</p>
+                        <p>Source and screen top talent for our diverse range of remote positions.</p>
                     </div>
-                    <div class="job-card bg-purple-700 p-4 rounded-lg">
-                        <div class="flex items-center">
+                    <div class="job-card">
+                        <div class="job-content">
                             <input type="checkbox" id="distribution" value="Distribution" class="checkbox-custom">
-                            <label for="distribution" class="ml-3 text-lg font-medium text-white">Distribution ($10/hour)</label>
+                            <label for="distribution">Distribution Manager ($10/hour)</label>
                         </div>
-                        <p class="text-sm text-purple-200 mt-2">Coordinate logistics from anywhere.</p>
+                        <p>Coordinate product logistics and distribution channels remotely.</p>
                     </div>
-                    <div class="job-card bg-purple-700 p-4 rounded-lg">
-                        <div class="flex items-center">
+                    <div class="job-card">
+                        <div class="job-content">
                             <input type="checkbox" id="listing" value="Listing" class="checkbox-custom">
-                            <label for="listing" class="ml-3 text-lg font-medium text-white">Listing ($10/hour)</label>
+                            <label for="listing">Listing Specialist ($10/hour)</label>
                         </div>
-                        <p class="text-sm text-purple-200 mt-2">Manage listings from your home office.</p>
+                        <p>Manage and optimize product listings across multiple platforms.</p>
                     </div>
-                    <div class="job-card bg-purple-700 p-4 rounded-lg">
-                        <div class="flex items-center">
+                    <div class="job-card">
+                        <div class="job-content">
                             <input type="checkbox" id="admin" value="Administrative Assistance" class="checkbox-custom">
-                            <label for="admin" class="ml-3 text-lg font-medium text-white">Administrative Assistance ($10/hour)</label>
+                            <label for="admin">Administrative Assistant ($10/hour)</label>
                         </div>
-                        <p class="text-sm text-purple-200 mt-2">Provide admin support remotely.</p>
+                        <p>Provide comprehensive administrative support to our remote teams.</p>
                     </div>
                 </div>
 
                 <!-- SMS/WhatsApp Consent Checkbox -->
-                <div class="flex items-center mt-6">
+                <div class="messaging-consent">
                     <input type="checkbox" id="messagingConsent" class="checkbox-custom" required>
-                    <label for="messagingConsent" class="ml-3 text-sm text-purple-200">I consent to receive SMS or WhatsApp messages regarding my application.</label>
+                    <label for="messagingConsent">I consent to receive WhatsApp messages regarding my application status</label>
                 </div>
 
                 <!-- Total Pay Display -->
-                <div class="mt-6">
-                    <p id="totalPay" class="text-xl font-semibold text-white">Total Hourly Pay: $0</p>
+                <div>
+                    <p id="totalPay">Total Hourly Pay: $0</p>
                 </div>
 
                 <!-- Error Message -->
-                <p id="errorMessage" class="text-pink-400 text-sm hidden">Please select exactly three positions.</p>
+                <p id="errorMessage">Please select exactly three positions to proceed.</p>
 
-                <!-- Messaging Options -->
-                <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center"
-                    <button type="submit" name="method" value="whatsapp">Apply via WhatsApp</button>
+                <!-- Submit Buttons -->
+                <div class="button-group">
+                    <button type="submit" name="method" value="whatsapp">
+                        <i class="fab fa-whatsapp"></i> Apply via WhatsApp
+                    </button>
                 </div>
             </form>
         </section>
@@ -443,11 +646,13 @@
 
     <!-- Footer -->
     <footer class="bg-purple-950 text-white text-center py-6">
-        <p>&copy; 2025 Luxoft. All rights reserved.</p>
-        <p class="text-sm mt-2">By applying, you agree to our <a href="#" class="underline hover:text-pink-400">Terms</a> and <a href="#" class="underline hover:text-pink-400">Privacy Policy</a></p>
+        <div class="container">
+            <p>&copy; 2025 Luxoft. All Rights Reserved.</p>
+            <p class="text-sm mt-2">By applying, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+        </div>
     </footer>
 
-    <!-- JavaScript for Form Handling and Slideshow -->
+    <!-- JavaScript -->
     <script>
         const form = document.getElementById('jobForm');
         const totalPayElement = document.getElementById('totalPay');
@@ -484,10 +689,10 @@
             e.preventDefault();
             const checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked:not(#messagingConsent)');
             if (checkedCheckboxes.length !== 3) {
-                errorMessage.classList.remove('hidden');
+                errorMessage.style.display = 'block';
                 return;
             }
-            errorMessage.classList.add('hidden');
+            errorMessage.style.display = 'none';
 
             // Get name and selected jobs
             const applicantName = applicantNameInput.value.trim();
